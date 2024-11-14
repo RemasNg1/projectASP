@@ -1,0 +1,17 @@
+﻿
+@{
+    var product = (ProductModel)ViewData["product"];
+}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Product: @product.Name</h1> <hr />
+                    <p class="card-text">Price: <strong>@product.Price $</strong></p>
+                    <a class="btn btn-primary mt-3" asp-controller="Products" asp-action="Index">Back To Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
