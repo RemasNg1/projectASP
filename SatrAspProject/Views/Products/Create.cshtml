@@ -12,11 +12,14 @@
                         <div class="form-group">
                             <label asp-for="Name" class="control-label">Product Name</label>
                             <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+                            <span class="text-danger" asp-validation-for="Name"></span>
                         </div>
 
                         <div class="form-group">
                             <label asp-for="Price" class="control-label">Product Price</label>
                             <input asp-for="Price" class="form-control" placeholder="Enter product price" />
+                            <span class="text-danger" asp-validation-for="Price"></span>
+
                         </div>
 
                         <div class="form-group text-center mt-4">

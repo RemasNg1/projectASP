@@ -27,15 +27,17 @@ namespace SatrAspProject.Controllers
         [HttpPost]
         public IActionResult Create([Bind("Name", "Description", "Price")] ProductModel product)
         {
+
+            if (ModelState.IsValid)
+            {
                 _db.Products.Add(product);
                 _db.SaveChanges();
-                return RedirectToAction("Details",new { id = product.Id });
-            
-
+                return RedirectToAction("Details", new { id = product.Id });
+            }
+            return View(product);
         }
 
-
-        public IActionResult Details(int? id)
+            public IActionResult Details(int? id)
         {
             var product = _db.Products.FirstOrDefault(p => p.Id==id);
             if(product==null || id==null)
