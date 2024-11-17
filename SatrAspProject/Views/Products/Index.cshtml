@@ -1,7 +1,5 @@
-﻿
-@{
-    var product = (List<ProductModel>)ViewData["product"];
-}
+﻿@model List<ProductModel>
+
 
 
 <table class="table">
@@ -14,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var p in product)
+        @foreach(var p in Model)
         {
     
         <tr>
@@ -27,3 +25,5 @@
     </tbody>
 
 </table>
+
+<a asp-action="Create" class="btn btn-primary">Add Product</a>

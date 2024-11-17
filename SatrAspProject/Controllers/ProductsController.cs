@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SatrAspProject.Data;
+using SatrAspProject.Models;
 
 namespace SatrAspProject.Controllers
 {
@@ -14,27 +15,41 @@ namespace SatrAspProject.Controllers
         public IActionResult Index()
         {
             var product = _db.Products.ToList();
-            ViewData["product"]=product;
+            return View(product);
+        }
+
+        public IActionResult Create()
+        {
+
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Create([Bind("Name", "Description", "Price")] ProductModel product)
+        {
+                _db.Products.Add(product);
+                _db.SaveChanges();
+                return RedirectToAction("Details",new { id = product.Id });
+            
+
+        }
+
+
         public IActionResult Details(int? id)
         {
-            var product = _db.Products.ToList().Find(p => p.Id==id);
+            var product = _db.Products.FirstOrDefault(p => p.Id==id);
             if(product==null || id==null)
             {
                 return View("NotFound");
             }
-            ViewData["product"]=product;
-            return View();
+            return View(product);
         }
 
         public IActionResult Random()
         {
             var products = _db.Products.ToList();
             var randomProduct = products[new Random().Next(products.Count)];
-            ViewData["random"]=randomProduct;
-            return View();
+            return View(randomProduct);
         }
 
     }
